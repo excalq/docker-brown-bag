@@ -1,0 +1,11 @@
+web:
+  build: sinatra-app
+  ports:
+    - "4567:4567"
+  links:
+    - redis
+
+redis:
+  build: redis 
+  # Or to use any existing image
+  #image: redis

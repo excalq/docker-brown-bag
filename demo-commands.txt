@@ -1,0 +1,31 @@
+### Examine our files ###
+
+vim redis/Dockerfile
+vim sinatra-app/Dockerfile
+vim docker-compose.yml
+
+###################
+### Build Redis ###
+
+docker build -t redis redis/
+
+docker images
+docker ps -a
+
+#########################
+### Build Sinatra App ###
+
+# (using compose instead)
+docker build -t sinatra-app sinatra-app/
+
+docker run -d --name='redis0' redis
+docker run -d --name='web0' -p 4567:4567 --link redis0:redis  sinatra-app
+
+
+### Tear it down and Run Everything via Docker Compose ###
+
+docker-compose build
+docker-compose up
+
+docker-compose down
+
